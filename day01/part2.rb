@@ -15,4 +15,8 @@ class Part < BasePart
   def window(index)
     input.values_at(*(index..(index + 2)).to_a)
   end
+
+  def input
+    @input ||= super.map(&:to_i)
+  end
 end

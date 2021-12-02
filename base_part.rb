@@ -12,6 +12,6 @@ class BasePart
   end
 
   def input
-    @input ||= InputFetcher.day(self.class::DAY).split("\n").map(&:to_i)
+    @input ||= InputFetcher.day(self.class::DAY).split("\n")
   end
 end

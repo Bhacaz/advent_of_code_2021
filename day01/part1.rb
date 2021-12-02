@@ -9,4 +9,8 @@ class Part < BasePart
     end
     increase # => 1298
   end
+
+  def input
+    @input ||= super.map(&:to_i)
+  end
 end
