@@ -69,18 +69,25 @@ class Part < BasePart
   DAY = 4
   def run
     input
-    wining_board = nil
-    wining_number = @draw.detect do |i_to_mark|
-      @bingo_board.any? do |board|
+    winner_boards = []
+    wining_number = nil
+    @draw.each do |i_to_mark|
+      @bingo_board.each do |board|
+        next if winner_boards.include?(board)
+
         board.mark(i_to_mark)
         if board.winning_numbers
-          wining_board = board
-          true
+          winner_boards << board
         end
+      end
+
+      if winner_boards.size == @bingo_board.size
+        wining_number = i_to_mark
+        break
       end
     end
 
-    wining_board.unmarked_numbers.sum * wining_number # => 10374
+    winner_boards.last.unmarked_numbers.sum * wining_number # => 24742
   end
 
   def input
@@ -97,6 +104,6 @@ class Part < BasePart
           end
           @bingo_board << BingoBoard.new(numbers)
         end
-     end
+      end
   end
 end
