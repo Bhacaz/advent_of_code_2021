@@ -1,12 +1,5 @@
 # frozen_string_literal: true
 
-class CrabSubmarine
-  def initialize(horizontal, fuel)
-    @horizontal = horizontal
-    @fuel = fuel
-  end
-end
-
 class Part < BasePart
   DAY = 8
   def run
